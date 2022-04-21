@@ -20,9 +20,6 @@ struct ExerciseOneView: View {
 
     // Controls the hue of the circle
     @State private var hue: Color = .black
-    
-    // Whether to apply the animation
-    @State private var useAnimation = true
 
     // MARK: Computed properties
 
