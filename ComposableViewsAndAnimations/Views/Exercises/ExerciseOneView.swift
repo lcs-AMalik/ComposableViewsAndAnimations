@@ -16,13 +16,14 @@ struct ExerciseOneView: View {
     @Binding var showThisView: Bool
     
     // Controls the size of the circle
-    @State private var scaleFactor: CGFloat = 1.0
+    @State private var scaleFactor = 1.0
 
     // Controls the hue of the circle
     @State private var hue: Color = .black
     
     // Controls the size of the circle
-    @State private var offset: CGFloat = -50.0
+    @State private var offsetx = 0.0
+    @State var offsety = 0.0
 
     // MARK: Computed properties
 
@@ -30,13 +31,18 @@ struct ExerciseOneView: View {
         
         NavigationView {
             
-            VStack {
+            ZStack {
 
                 Circle()
                     .foregroundColor(hue)
+                    .frame(width: 100, height: 100)
                     .scaleEffect(scaleFactor)
-                    .offset(x: 0, y: offset)
+                    .offset(x: offsetx, y: offsety)
+                    .animation(
+                        Animation.easeInOut(duration: 2.0)
+                        )
                     .onTapGesture {
+                        // Move the circle to the right
                         
                         if scaleFactor > 0.2 {
                             // Reduce the size of the circle by a tenth
@@ -48,29 +54,12 @@ struct ExerciseOneView: View {
                             hue = Color(hue: Double.random(in: 1...360) / 360.0,
                                         saturation: 0.8,
                                         brightness: 0.8)
-                        }
-                        
-                        // Move the text down by whatever the value of "offset" is
-                        // This state change will be animated
-                        withAnimation(.interpolatingSpring(mass: 1.0, stiffness: 1.0, damping: 0.75, initialVelocity: 10)) {
-                            offset += 5
+                            
+                            offsetx = 100.0
+                            offsety = 100.0
                         }
                     }
-//                    .onTapGesture {
-//                        if scaleFactor > 0.2 {
-//                            // Reduce the size of the circle by a tenth
-//                            scaleFactor -= 0.1
-//                        } else {
-//                            // Make sure the button doesn't entirely disappear
-//                            scaleFactor = 1
-//                            // Change the color of the view to a random hue
-//                            hue = Color(hue: Double.random(in: 1...360) / 360.0,
-//                                        saturation: 0.8,
-//                                        brightness: 0.8)
-//                        }
-//                    }
-                
-            }
+                }
             .navigationTitle("Exercise 1")
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
@@ -79,9 +68,7 @@ struct ExerciseOneView: View {
                     }
                 }
             }
-
         }
-        
     }
     
     // MARK: Functions
