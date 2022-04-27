@@ -17,22 +17,22 @@ struct ExerciseOneView: View {
     
     // Controls the size of the circle
     @State private var scaleFactor = 1.0
-
+    
     // Controls the hue of the circle
     @State private var hue: Color = .black
     
     // Controls the size of the circle
     @State private var offsetx = 0.0
     @State var offsety = 0.0
-
+    
     // MARK: Computed properties
-
+    
     var body: some View {
         
         NavigationView {
             
             ZStack {
-
+                
                 Circle()
                     .foregroundColor(hue)
                     .frame(width: 100, height: 100)
@@ -40,7 +40,7 @@ struct ExerciseOneView: View {
                     .offset(x: offsetx, y: offsety)
                     .animation(
                         Animation.easeInOut(duration: 2.0)
-                        )
+                    )
                     .onTapGesture {
                         // Move the circle to the right
                         
@@ -59,7 +59,7 @@ struct ExerciseOneView: View {
                             offsety = 100.0
                         }
                     }
-                }
+            }
             .navigationTitle("Exercise 1")
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
