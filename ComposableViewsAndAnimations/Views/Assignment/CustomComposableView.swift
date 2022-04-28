@@ -14,6 +14,8 @@ struct CustomComposableView: View {
     // Control the horizontal offset
     @State private var offset = 0.0
     
+    @State var message: String
+    
     // Control the rotation angle
     @State var currentRotationAngle = Angle.degrees(0)
     
@@ -24,7 +26,7 @@ struct CustomComposableView: View {
                 .frame(width: 50, height: 50)
                 
             
-            Text("OK")
+            Text(message)
                 .foregroundColor(.white)
         }
         
@@ -46,6 +48,6 @@ struct CustomComposableView: View {
 
 struct CustomComposableView_Previews: PreviewProvider {
     static var previews: some View {
-        CustomComposableView()
+        CustomComposableView(message: "OOOH!")
     }
 }
