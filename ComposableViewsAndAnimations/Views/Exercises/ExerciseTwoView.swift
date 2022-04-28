@@ -1,5 +1,5 @@
 //
-//  ExerciseTwoView.swift
+//  ExerciseOneView.swift
 //  ComposableViewsAndAnimations
 //
 //  Created by Russell Gordon on 2021-02-23.
@@ -14,22 +14,73 @@ struct ExerciseTwoView: View {
     
     // Controls whether this view is showing or not
     @Binding var showThisView: Bool
-        
-    // Whether to apply the animation
-    @State private var useAnimation = false
-
+    
+    // Controls the size of the circle
+    @State private var scaleFactor = 1.0
+    
+    // Controls the hue of the circle
+    @State private var hue: Color = .black
+    
+    // Controls the size of the circle
+    @State private var offsetx = -100.0
+    @State var offsety = -100.0
+    
     // MARK: Computed properties
-
+    
     var body: some View {
         
         NavigationView {
             
-            VStack {
-
-                Circle()
-                    .frame(width: 200, height: 200)
-                    .foregroundColor(.blue)
+            ZStack {
                 
+                Circle()
+                    .foregroundColor(hue)
+                    .frame(width: 100, height: 100)
+                    .scaleEffect(scaleFactor)
+                    .offset(x: offsetx, y: offsety)
+                    .animation(
+                        Animation.easeInOut(duration: 1.0)
+                            .repeatForever(autoreverses: true)
+                    )
+                    .onTapGesture {
+                        // Move the circle to the right
+                       
+                            scaleFactor = 1
+                            // Change the color of the view to a random hue
+                            hue = Color(hue: Double.random(in: 1...360) / 360.0,
+                                        saturation: 0.8,
+                                        brightness: 0.8)
+                            
+                            offsetx = 100.0
+                            offsety = 100.0
+                        
+                    }
+            }
+            
+            ZStack {
+                
+                Circle()
+                    .foregroundColor(hue)
+                    .frame(width: 100, height: 100)
+                    .scaleEffect(scaleFactor)
+                    .offset(x: 100, y: 100)
+                    .animation(
+                        Animation.easeInOut(duration: 1.0)
+                            .repeatForever(autoreverses: true)
+                    )
+                    .onTapGesture {
+                        // Move the circle to the right
+                       
+                            scaleFactor = 1
+                            // Change the color of the view to a random hue
+                            hue = Color(hue: Double.random(in: 1...360) / 360.0,
+                                        saturation: 0.8,
+                                        brightness: 0.8)
+                            
+                            offsetx = -100.0
+                            offsety = -100.0
+                        
+                    }
             }
             .navigationTitle("Exercise 2")
             .toolbar {
@@ -39,9 +90,7 @@ struct ExerciseTwoView: View {
                     }
                 }
             }
-
         }
-        
     }
     
     // MARK: Functions
@@ -55,6 +104,13 @@ struct ExerciseTwoView: View {
 
 struct ExerciseTwoView_Previews: PreviewProvider {
     static var previews: some View {
-        ExerciseTwoView(showThisView: .constant(true))
+        ExerciseOneView(showThisView: .constant(true))
     }
 }
+
+
+//// Move the Circle down by whatever the value of "offset" is
+//// This state change will be animated
+//withAnimation(.interpolatingSpring(mass: 1.0, stiffness: 1.0, damping: 0.75, initialVelocity: 10)) {
+//    offset += 5
+//}
