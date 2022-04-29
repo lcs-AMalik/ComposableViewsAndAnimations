@@ -43,6 +43,9 @@ struct CustomComposableView: View {
     @State private var xoffset8 = 0.0
     @State private var yoffset8 = 0.0
     
+    // Trigger to start the animation
+    let timer = Timer.publish(every: 0.25, on: .main, in: .common).autoconnect()
+    
     // Control the message written in the view
     @State var message: String
     
@@ -65,7 +68,7 @@ struct CustomComposableView: View {
                     Animation.easeInOut(duration: 1.0)
                         .repeatForever(autoreverses: true)
                 )
-                .onTapGesture {
+                .onReceive(timer) {input in
                     // Move the circle to the right
                     xoffset = 150.0
                     yoffset = -150.0
@@ -80,7 +83,7 @@ struct CustomComposableView: View {
                     Animation.easeInOut(duration: 1.0)
                         .repeatForever(autoreverses: true)
                 )
-                .onTapGesture {
+                .onReceive(timer) {input in
                     // Move the circle to the right
                     yoffset2 = -200.0
                     xoffset2 = 0.0
@@ -94,7 +97,7 @@ struct CustomComposableView: View {
                     Animation.easeInOut(duration: 1.0)
                         .repeatForever(autoreverses: true)
                 )
-                .onTapGesture {
+                .onReceive(timer) {input in
                     // Move the circle to the right
                     xoffset3 = -150.0
                     yoffset3 = -150.0
@@ -108,7 +111,7 @@ struct CustomComposableView: View {
                     Animation.easeInOut(duration: 1.0)
                         .repeatForever(autoreverses: true)
                 )
-                .onTapGesture {
+                .onReceive(timer) {input in
                     // Move the circle to the right
                     xoffset4 = -200.0
                     yoffset4 = 0.0
@@ -122,7 +125,7 @@ struct CustomComposableView: View {
                     Animation.easeInOut(duration: 1.0)
                         .repeatForever(autoreverses: true)
                 )
-                .onTapGesture {
+                .onReceive(timer) {input in
                     // Move the circle to the right
                     xoffset5 = -150.0
                     yoffset5 = 150.0
@@ -136,7 +139,7 @@ struct CustomComposableView: View {
                     Animation.easeInOut(duration: 1.0)
                         .repeatForever(autoreverses: true)
                 )
-                .onTapGesture {
+                .onReceive(timer) {input in
                     // Move the circle to the right
                     yoffset6 = 200.0
                     xoffset6 = 0.0
@@ -150,7 +153,7 @@ struct CustomComposableView: View {
                     Animation.easeInOut(duration: 1.0)
                         .repeatForever(autoreverses: true)
                 )
-                .onTapGesture {
+                .onReceive(timer) {input in
                     // Move the circle to the right
                     xoffset7 = 150.0
                     yoffset7 = 150.0
@@ -164,7 +167,7 @@ struct CustomComposableView: View {
                     Animation.easeInOut(duration: 1.0)
                         .repeatForever(autoreverses: true)
                 )
-                .onTapGesture {
+                .onReceive(timer) {input in
                     // Move the circle to the right
                     xoffset8 = 200.0
                     yoffset8 = 0.0
