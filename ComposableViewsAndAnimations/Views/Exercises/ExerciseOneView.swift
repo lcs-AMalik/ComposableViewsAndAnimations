@@ -85,3 +85,66 @@ struct ExerciseOneView_Previews: PreviewProvider {
         ExerciseOneView(showThisView: .constant(true))
     }
 }
+
+
+
+
+
+
+
+
+
+////
+////  CustomComposableView.swift
+////  ComposableViewsAndAnimations
+////
+////  Created by Russell Gordon on 2021-02-24.
+////
+//
+//import SwiftUI
+//
+//struct CustomComposableView: View {
+//
+//    // MARK: Stored properties
+//
+//    // Control the horizontal offset
+//    @State private var xoffset = 0.0
+//    @State private var yoffset = 0.0
+//
+//    @State var message: String
+//
+//    // Control the rotation angle
+//    @State var currentRotationAngle = Angle.degrees(0)
+//
+//    // MARK: Computed properties
+//    var body: some View {
+//        ZStack {
+//            Circle()
+//                .frame(width: 50, height: 50)
+//
+//
+//            Text(message)
+//                .foregroundColor(.white)
+//        }
+//
+//        .rotationEffect(currentRotationAngle, anchor: .center)
+//        .offset(x: xoffset, y: 0)
+//        //.animation(.default)
+//        .animation(
+//            Animation.easeInOut(duration: 2.0)
+//            )
+//        .onTapGesture {
+//            // Move the circle to the right
+//            xoffset = 100.0
+//
+//            // Rotate a full revolution
+//            currentRotationAngle = .degrees(360)
+//        }
+//    }
+//}
+//
+//struct CustomComposableView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CustomComposableView(message: "OOOH!")
+//    }
+//}

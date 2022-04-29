@@ -19,15 +19,15 @@ struct CustomComposableDescriptionView: View {
             
             Group {
                 
-                Text("Description")
+                Text("Moving Circles")
                     .font(.title2)
                     .bold()
                     .padding(.top)
                 
                 Text("""
-                    Replace this with a description of how to use this view.
+                    On tap this work of art will explode with circles in and out!
 
-                    If the view accepts a parameter, provide a control to enter the input below.
+                    This view accepts a TEXT parameter below. Type anything in the input below!
                     """)
                 
                 TextField("Enter an input value", text: $phrase)
@@ -36,7 +36,7 @@ struct CustomComposableDescriptionView: View {
             .padding(.bottom)
             
             List {
-                NavigationLink(destination: CustomComposableView(message: phrase)) {
+                NavigationLink(destination: CustomComposableView(message: phrase, showThisView: .constant(true))) {
                     SimpleListItemView(title: "My Composable View",
                                        caption: "A brief description of my view")
                 }
